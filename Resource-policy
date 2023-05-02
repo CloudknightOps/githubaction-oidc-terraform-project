@@ -41,11 +41,11 @@
       "Sid": "DenyBillingAccess",
       "Effect": "Deny",
       "Action": [
-        "aws-portal:*",
-        "aws-portal:ViewAccount",
-        "aws-portal:ViewPaymentMethods"
+        "aws-portal:*"
       ],
       "Resource": "*"
     }
   ]
 }
+
+
