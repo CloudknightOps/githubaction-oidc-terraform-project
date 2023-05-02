@@ -2,7 +2,7 @@ name: "Terraform action"
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
 permissions:
       id-token: write # This is required for aws oidc connection
@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Configure AWS credentials from AWS account
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: ${{ secrets.AWS_ROLE }}
           aws-region: ${{ secrets.AWS_REGION }}
@@ -32,7 +32,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 1.2.5
+          terraform_version: 2.0.3
 
       - name: Terraform fmt
         id: fmt
