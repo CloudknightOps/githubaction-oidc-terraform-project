@@ -1,0 +1,51 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowAllActions",
+      "Effect": "Allow",
+      "Action": "*",
+      "Resource": "*",
+      "Condition": {
+        "StringNotEquals": {
+          "aws:RequestedRegion": [
+            "us-east-1",
+            "us-west-2",
+            "eu-west-1"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "DenyIAMAccess",
+      "Effect": "Deny",
+      "Action": [
+        "iam:*User*",
+        "iam:*Role*",
+        "iam:*Policy*"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenyCloudWatchLogsAccess",
+      "Effect": "Deny",
+      "Action": [
+        "logs:Create*",
+        "logs:Put*",
+        "logs:Delete*",
+        "logs:Describe*"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenyBillingAccess",
+      "Effect": "Deny",
+      "Action": [
+        "aws-portal:*",
+        "aws-portal:ViewAccount",
+        "aws-portal:ViewPaymentMethods"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
