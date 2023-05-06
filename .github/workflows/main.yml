@@ -9,7 +9,7 @@ permissions:
       contents: read # This is required for actions/checkout
       pull-requests: write # This is required for gh bot to comment PR
 env:
-  AWS_REGION: ${{ secrets.AWS_REGION }}
+  AWS_REGION:  "us-east-1"
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -24,8 +24,8 @@ jobs:
       - name: Configure AWS credentials from AWS account
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: ${{ secrets.AWS_ROLE }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: arn:aws:iam::268310778172:role/Github-action-terrraform-oidc-deployment
+          aws-region: ${{env.AWS_REGION}}
           role-session-name: Github-action-terrraform-oidc-deployment
 
       - name: Setup Terraform
